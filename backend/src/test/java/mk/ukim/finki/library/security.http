@@ -1,0 +1,41 @@
+#### register
+#POST http://localhost:9091/api/users/register
+#Content-Type: application/json
+#
+#{
+#
+#  "username": "Administrator",
+#
+#  "password": "Admin",
+#
+#  "repeatPassword": "Admin",
+#
+#  "name": "Filip",
+#
+#  "surname": "Angelov"
+#}
+#
+#> {%
+#client.test("Request executed succesfully", function (){
+#   client.assert(response.status === 200, "Reesponse status is not 200");
+#});
+#%}
+
+
+### login
+POST http://localhost:9091/api/users/login
+Content-Type: application/json
+
+{
+  "username": "Administrator",
+  "password": "Admin"
+}
+
+> {%
+client.test("Request executed successfully", function(){
+   client.assert(response.status === 200, "Response status is not 200");
+   var jwt = response.body
+   client.global.set("jwt", response.body)
+});
+
+  %}
